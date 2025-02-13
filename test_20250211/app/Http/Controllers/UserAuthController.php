@@ -6,17 +6,8 @@ use App\Http\Controllers\Controller;
 
 class UserAuthController extends Controller
 {
-    public function Login()
-    {
-        return 123;
-    }
 
-    public function Search($user_id)
-    {
-        return "你輸入的值: $user_id";
-    }
-
-    public function SignUp()
+    public function SignUpPage()
     {
         $binding = [
             'title' => '註冊',
