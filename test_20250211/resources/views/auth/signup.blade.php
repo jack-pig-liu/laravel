@@ -9,6 +9,7 @@
 <h1>{{ $title }}</h1>
 
 <!-- @include('component.social') -->
+@include('component.errors')
 
 <form action="/user/auth/signup" method="post">
     {{ csrf_field() }}
