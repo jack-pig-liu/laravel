@@ -28,4 +28,20 @@ class MerchandiseController extends Controller
 
         return redirect('/merchandise/' . $merchandise_sql_data['id'] . '/edit');
     }
+
+    public function MerchandiseEditPage($merchandise_id)
+    {
+        $merchandises = Merchandise::where('id', $merchandise_id);
+        if ($merchandises->count() === 0) {
+            return redirect('/');
+        } else {
+            $merchandise = $merchandises->first();
+
+            $binding = [
+                'title' => '編輯商品',
+                'merchandise' => $merchandise
+            ];
+            return view('merchandise.edit', $binding);
+        }
+    }
 }
