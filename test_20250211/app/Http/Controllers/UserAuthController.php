@@ -53,4 +53,23 @@ class UserAuthController extends Controller
             );
         }
     }
+
+    public function SignInPage()
+    {
+        $binding = [
+            'title' => '登入',
+            'note' => '使用者登入頁面'
+        ];
+        return view('auth.signin', $binding);
+    }
+
+    public function SignInProcess()
+    {
+        $input = request()->all();
+        print_r($input);
+
+        //  將登入邏輯寫進去
+        // 1. 判斷資料庫裏面有沒有該帳號
+        // 2. 若有該帳號則判斷密碼加密後是否一致
+    }
 }

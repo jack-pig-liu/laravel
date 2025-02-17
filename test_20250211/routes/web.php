@@ -16,5 +16,17 @@ Route::group(['prefix' => 'user'], function () {
             'signup',
             'App\Http\Controllers\UserAuthController@SignUpProcess'
         );
+        Route::get(
+            'signin',
+            'App\Http\Controllers\UserAuthController@SignInPage'
+        );
+        Route::post(
+            'signin',
+            'App\Http\Controllers\UserAuthController@SignInProcess'
+        );
+        Route::get(
+            'signout',
+            'App\Http\Controllers\UserAuthController@SignOut'
+        );
     });
 });
