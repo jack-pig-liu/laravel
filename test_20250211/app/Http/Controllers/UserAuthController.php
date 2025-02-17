@@ -71,5 +71,23 @@ class UserAuthController extends Controller
         //  將登入邏輯寫進去
         // 1. 判斷資料庫裏面有沒有該帳號
         // 2. 若有該帳號則判斷密碼加密後是否一致
+        $tmpuser = User::where('email', $input['email'])->first();
+        // dd($tmpuser);
+        if (is_null($tmpuser)) {
+            return redirect('/user/auth/signin')
+                ->withErrors(['查無此帳號', '請重新輸入'])
+                ->withInput();
+        } else {
+            $after_password = Hash::make($input['password']);
+            if ($tmpuser['password'] === $after_password) {
+                return redirect('/user/auth/signin')
+                    ->withErrors(['密碼正確', '請重新輸入'])
+                    ->withInput();
+            } else {
+                return redirect('/user/auth/signin')
+                    ->withErrors(['密碼錯誤', '請重新輸入'])
+                    ->withInput();
+            }
+        }
     }
 }
