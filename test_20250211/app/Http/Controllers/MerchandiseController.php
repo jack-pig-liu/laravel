@@ -44,4 +44,17 @@ class MerchandiseController extends Controller
             return view('merchandise.edit', $binding);
         }
     }
+
+    public function MerchandiseEditProcess($merchandise_id)
+    {
+        $input = request()->all();
+
+        unset($input['_token']);
+        // dd($input);
+
+        Merchandise::where('id', $merchandise_id)
+            ->update($input);
+
+        return redirect('/merchandise/' . $merchandise_id . '/edit');
+    }
 }

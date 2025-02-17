@@ -40,4 +40,8 @@ Route::group(['prefix' => 'merchandise'], function () {
         '{mechandise_id}/edit',
         'App\Http\Controllers\MerchandiseController@MerchandiseEditPage'
     );
+    Route::post(
+        '{mechandise_id}/edit',
+        'App\Http\Controllers\MerchandiseController@MerchandiseEditProcess'
+    );
 });
