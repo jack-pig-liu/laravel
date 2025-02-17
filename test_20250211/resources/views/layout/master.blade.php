@@ -12,8 +12,8 @@
 
 <body>
     <header>
-        <a href="#">註冊</a>
-        <a href="#">登入</a>
+        <a href="/user/auth/signup">註冊</a>
+        <a href="/user/auth/signin">登入</a>
     </header>
     <div class="container">
         @yield('content')

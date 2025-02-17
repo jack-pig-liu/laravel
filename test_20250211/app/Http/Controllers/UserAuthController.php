@@ -51,6 +51,8 @@ class UserAuthController extends Controller
                         ->subject('恭喜恭喜 恭喜你註冊成功');
                 }
             );
+
+            return redirect('/user/auth/signin');
         }
     }
 
@@ -78,14 +80,21 @@ class UserAuthController extends Controller
                 ->withErrors(['查無此帳號', '請重新輸入'])
                 ->withInput();
         } else {
-            $after_password = Hash::make($input['password']);
-            if ($tmpuser['password'] === $after_password) {
+            if (Hash::check($input['password'], $tmpuser['password'])) {
                 return redirect('/user/auth/signin')
-                    ->withErrors(['密碼正確', '請重新輸入'])
+                    ->withErrors(
+                        [
+                            '密碼正確',
+                            '請重新輸入'
+                        ]
+                    )
                     ->withInput();
             } else {
                 return redirect('/user/auth/signin')
-                    ->withErrors(['密碼錯誤', '請重新輸入'])
+                    ->withErrors([
+                        '密碼錯誤',
+                        '請重新輸入'
+                    ])
                     ->withInput();
             }
         }
