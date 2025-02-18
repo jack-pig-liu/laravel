@@ -73,4 +73,16 @@ class MerchandiseController extends Controller
 
         return redirect('/merchandise/' . $merchandise_id . '/edit');
     }
+
+    public function MerchandiseManagePage()
+    {
+
+        $merchandises = Merchandise::get();
+
+        $binding = [
+            'title' => '管理商品',
+            'merchandises' => $merchandises
+        ];
+        return view('merchandise.manage', $binding);
+    }
 }
