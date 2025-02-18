@@ -11,7 +11,7 @@
 <!-- @include('component.social') -->
 @include('component.errors')
 
-<ul>
+<ul> 
     @foreach($merchandises as $merchandise)
     <li>
         <h4>{{ $merchandise->name }}</h4>
