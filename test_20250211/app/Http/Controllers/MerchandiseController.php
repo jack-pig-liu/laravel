@@ -7,7 +7,6 @@ use Hash;
 use App\Shop\Entity\User;
 use Illuminate\Support\Facades\Mail;
 use App\Shop\Entity\Merchandise;
-use Image;
 
 class MerchandiseController extends Controller
 {
@@ -57,23 +56,23 @@ class MerchandiseController extends Controller
             $photo = $input['photo'];
             // 檔案副檔名
             $file_extension = $photo->getClientOriginalExtension();
+            print($file_extension);
             // 產生自訂隨機檔案名稱
             $file_name = uniqid() . '.' . $file_extension;
             // 檔案相對路徑
-            $file_relative_path = 'images/merchandise/' . $file_name;
+            $file_relative_path = 'images/merchandise/';
             // 檔案存放目錄為對外公開 public 目錄下的相對位置
             $file_path = public_path($file_relative_path);
-            print($file_path);
-            // 裁切圖片
-            // $image = Image::make($photo)->fit(450, 300)->save($file_path);
-            // 設定圖片檔案相對位置
-            // $input['photo'] = $file_relative_path;
+            // 移動上傳檔案
+            $photo->move($file_path, $file_name);
+            // 設定存入資料庫的檔案路徑 是相對路徑
+            $photo = $file_relative_path . $file_name;
         }
-
-        dd($input);
 
         Merchandise::where('id', $merchandise_id)
             ->update($input);
+
+        dd($input);
 
         return redirect('/merchandise/' . $merchandise_id . '/edit');
     }
