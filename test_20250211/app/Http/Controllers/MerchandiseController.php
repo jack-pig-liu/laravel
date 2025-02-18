@@ -56,7 +56,6 @@ class MerchandiseController extends Controller
             $photo = $input['photo'];
             // 檔案副檔名
             $file_extension = $photo->getClientOriginalExtension();
-            print($file_extension);
             // 產生自訂隨機檔案名稱
             $file_name = uniqid() . '.' . $file_extension;
             // 檔案相對路徑
@@ -66,13 +65,11 @@ class MerchandiseController extends Controller
             // 移動上傳檔案
             $photo->move($file_path, $file_name);
             // 設定存入資料庫的檔案路徑 是相對路徑
-            $photo = $file_relative_path . $file_name;
+            $input['photo'] = $file_relative_path . $file_name;
         }
 
         Merchandise::where('id', $merchandise_id)
             ->update($input);
-
-        dd($input);
 
         return redirect('/merchandise/' . $merchandise_id . '/edit');
     }
