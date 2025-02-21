@@ -58,4 +58,8 @@ Route::group(['prefix' => 'merchandise'], function () {
         'manage',
         'App\Http\Controllers\MerchandiseController@MerchandiseManagePage'
     );
+    Route::get(
+        'purchase',
+        'App\Http\Controllers\CheckoutController@sendOrder'
+    );
 });
