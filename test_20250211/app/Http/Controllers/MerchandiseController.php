@@ -85,4 +85,16 @@ class MerchandiseController extends Controller
         ];
         return view('merchandise.manage', $binding);
     }
+
+    public function ReturnMerchandiseData()
+    {
+
+        $merchandises = Merchandise::get();
+        return response()->json([
+            'status' => 0,
+            'msg' => '',
+            'data' => $merchandises
+        ]);
+    }
+    
 }

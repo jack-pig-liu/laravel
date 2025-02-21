@@ -62,4 +62,9 @@ Route::group(['prefix' => 'merchandise'], function () {
         'purchase',
         'App\Http\Controllers\CheckoutController@sendOrder'
     );
+
+    Route::get(
+        'getdata',
+        'App\Http\Controllers\MerchandiseController@ReturnMerchandiseData'
+    );
 });
